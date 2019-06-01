@@ -15,5 +15,7 @@
 
 # End of https://www.gitignore.io/api/visualstudiocode
 
-bin/
-obj/
+Dove/bin/
+Dove/obj/
+Dove.Tests/bin/
+Dove.Tests/obj/
