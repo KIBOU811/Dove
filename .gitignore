@@ -19,3 +19,14 @@ Dove/bin/
 Dove/obj/
 Dove.Tests/bin/
 Dove.Tests/obj/
+
+Dove/.vscode/*
+!Dove/.vscode/settings.json
+!Dove/.vscode/tasks.json
+!Dove/.vscode/launch.json
+!Dove/.vscode/extensions.json
+Dove.Tests/.vscode/*
+!Dove.Tests/.vscode/settings.json
+!Dove.Tests/.vscode/tasks.json
+!Dove.Tests/.vscode/launch.json
+!Dove.Tests/.vscode/extensions.json
