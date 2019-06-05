@@ -5,7 +5,7 @@ using Dove.Lexing;
 
 namespace Dove.Tests
 {
-    public class UnitTest1
+    public class TestToken
     {
         [Fact]
         public void Test1()
