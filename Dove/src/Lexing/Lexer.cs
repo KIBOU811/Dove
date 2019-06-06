@@ -41,7 +41,7 @@ namespace Dove.Lexing
                 case '}':
                     token = new Token(TokenType.RBRACE, this.CurrentChar.ToString());
                     break;
-                case '\0':
+                case (char)0:
                     token = new Token(TokenType.EOF, this.CurrentChar.ToString());
                     break;
                 
