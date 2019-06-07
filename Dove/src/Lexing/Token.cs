@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Dove.Lexing
 {
     public class Token
@@ -5,10 +7,25 @@ namespace Dove.Lexing
         public TokenType Type { get; set; }
         public string Literal { get; set; }
 
+        public static Dictionary<string, TokenType> Keywords
+            = new Dictionary<string, TokenType>() {
+            { "let", TokenType.LET },
+            { "fn", TokenType.FUNCTION },
+        };
+
         public Token(TokenType type, string literal)
         {
             this.Type = type;
             this.Literal = literal;
+        }
+
+        public static TokenType LookupIdentifier(string identifier)
+        {
+            if (Token.Keywords.ContainsKey(identifier))
+            {
+                return Keywords[identifier];
+            }
+            return TokenType.IDENT;
         }
     }
 

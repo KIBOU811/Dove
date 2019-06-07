@@ -44,7 +44,7 @@ let add = fn(x, y) {
     x + y;
 };
 
-        let result = add(five, ten);";
+let result = add(five, ten);";
 
             var testTokens = new List<Token>();
             // let five = 5;
@@ -87,15 +87,15 @@ let add = fn(x, y) {
             testTokens.Add(new Token(TokenType.IDENT, "ten"));
             testTokens.Add(new Token(TokenType.RPAREN, ")"));
             testTokens.Add(new Token(TokenType.SEMICOLON, ";"));
-            testTokens.Add(new Token(TokenType.EOF, ""));
+            testTokens.Add(new Token(TokenType.EOF, '\0'.ToString()));
 
             var lexer = new Lexer(input);
 
             foreach (var testToken in testTokens)
             {
                 var token = lexer.NextToken();
-                Assert.AreEqual(testToken.Type, token.Type, "トークンの種類が間違っています。");
-                Assert.AreEqual(testToken.Literal, token.Literal, "トークンのリテラルが間違っています。");
+                Assert.Equal(testToken.Type, token.Type);
+                Assert.Equal(testToken.Literal, token.Literal);
             }
         }
     }
