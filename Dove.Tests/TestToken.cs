@@ -133,5 +133,44 @@ let result = add(five, ten);";
                 Assert.Equal(testToken.Literal, token.Literal);
             }
         }
+
+        [Fact]
+        public void TestNextToken4()
+        {
+            var input = @"if (5 < 10) {
+    return true;
+} else {
+    return false;
+}";
+
+            var testTokens = new List<Token>();
+            testTokens.Add(new Token(TokenType.IF, "if"));
+            testTokens.Add(new Token(TokenType.LPAREN, "("));
+            testTokens.Add(new Token(TokenType.INT, "5"));
+            testTokens.Add(new Token(TokenType.LT, "<"));
+            testTokens.Add(new Token(TokenType.INT, "10"));
+            testTokens.Add(new Token(TokenType.RPAREN, ")"));
+            testTokens.Add(new Token(TokenType.LBRACE, "{"));
+            testTokens.Add(new Token(TokenType.RETURN, "return"));
+            testTokens.Add(new Token(TokenType.TRUE, "true"));
+            testTokens.Add(new Token(TokenType.SEMICOLON, ";"));
+            testTokens.Add(new Token(TokenType.RBRACE, "}"));
+            testTokens.Add(new Token(TokenType.ELSE, "else"));
+            testTokens.Add(new Token(TokenType.LBRACE, "{"));
+            testTokens.Add(new Token(TokenType.RETURN, "return"));
+            testTokens.Add(new Token(TokenType.FALSE, "false"));
+            testTokens.Add(new Token(TokenType.SEMICOLON, ";"));
+            testTokens.Add(new Token(TokenType.RBRACE, "}"));
+            testTokens.Add(new Token(TokenType.EOF, '\0'.ToString()));
+
+            var lexer = new Lexer(input);
+
+            foreach (var testToken in testTokens)
+            {
+                var token = lexer.NextToken();
+                Assert.Equal(testToken.Type, token.Type);
+                Assert.Equal(testToken.Literal, token.Literal);
+            }
+        }
     }
 }
