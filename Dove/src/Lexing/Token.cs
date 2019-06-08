@@ -9,8 +9,13 @@ namespace Dove.Lexing
 
         public static Dictionary<string, TokenType> Keywords
             = new Dictionary<string, TokenType>() {
-            { "let", TokenType.LET },
             { "fn", TokenType.FUNCTION },
+            { "let", TokenType.LET },
+            { "if", TokenType.IF },
+            { "else", TokenType.ELSE },
+            { "return", TokenType.RETURN },
+            { "true", TokenType.TRUE },
+            { "false", TokenType.FALSE },
         };
 
         public Token(TokenType type, string literal)
@@ -64,6 +69,11 @@ namespace Dove.Lexing
         // reserved word
         FUNCTION,
         LET,
+        IF,
+        ELSE,
+        RETURN,
+        TRUE,
+        FALSE,
 
         // and more...
     }
