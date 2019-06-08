@@ -42,6 +42,14 @@ namespace Dove.Lexing
         // operator
         ASSIGN,
         PLUS,
+        MINUS,
+        ASTERISK,
+        SLASH,
+        NEGATION,
+        LT,
+        GT,
+        EQ,
+        NOT_EQ,
 
         // delimiter
         COMMA,
