@@ -8,7 +8,7 @@ namespace Dove.Tests
     public class TestToken
     {
         [Fact]
-        public void Test1()
+        public void TestNextToken1()
         {
             var input = "=+(){},;";
 
@@ -34,7 +34,7 @@ namespace Dove.Tests
         }
 
         [Fact]
-        public void Test2()
+        public void TestNextToken2()
         {
             
             var input = @"let five = 5;
@@ -97,6 +97,12 @@ let result = add(five, ten);";
                 Assert.Equal(testToken.Type, token.Type);
                 Assert.Equal(testToken.Literal, token.Literal);
             }
+        }
+
+        [Fact]
+        public void TestNextToken3()
+        {
+            
         }
     }
 }
