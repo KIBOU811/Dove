@@ -1,4 +1,7 @@
+using System.Collections.Generic;
 using Dove.Ast;
+using Dove.Ast.Expressions;
+using Dove.Ast.Statements;
 using Dove.Lexing;
 
 namespace Dove.Parsing
@@ -27,6 +30,70 @@ namespace Dove.Parsing
         public Root ParseRoot()
         {
             return null;
+        }
+
+        public Root ParseProgram()
+        {
+            var root = new Root();
+            root.Statements = new List<IStatement>();
+
+            while (this.CurrentToken.Type != TokenType.EOF)
+            {
+                var statement = this.ParseStatement();
+                if (statement != null)
+                {
+                    root.Statements.Add(statement);
+                }
+                this.ReadToken();
+            }
+            return root;
+        }
+
+        public IStatement ParseStatement()
+        {
+            switch (this.CurrentToken.Type)
+            {
+                case TokenType.LET:
+                    return this.ParseLetStatement();
+                default:
+                    return null;
+            }
+        }
+
+        public LetStatement ParseLetStatement()
+        {
+            var statement = new LetStatement();
+            statement.Token = this.CurrentToken;
+
+            if (!this.ExpectPeek(TokenType.IDENT)) return null;
+
+            // identifier (left side of let statement)
+            statement.Name = new Identifier(this.CurrentToken, this.CurrentToken.Literal);
+
+            // assign =
+            if (!this.ExpectPeek(TokenType.ASSIGN)) return null;
+
+            // statement (right side of let statement)
+            // TODO: will be implemented later
+            while (this.CurrentToken.Type != TokenType.SEMICOLON)
+            {
+                // until semicolon is found
+                this.ReadToken();
+            }
+
+            return statement;
+        }
+
+        private bool ExpectPeek(TokenType type)
+        {
+            // if next token is expected, return true
+            // 次のトークンが期待するものであれば読み飛ばす
+            if (this.NextToken.Type == type)
+            {
+                this.ReadToken();
+                return true;
+            }
+            return false;
         }
     }
 }
