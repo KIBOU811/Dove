@@ -2,7 +2,7 @@ using Dove.Ast;
 using Dove.Ast.Expressions;
 using Dove.Lexing;
 
-namespace Fove.Ast.Statements
+namespace Dove.Ast.Statements
 {
     public class LetStatement : IStatement
     {
