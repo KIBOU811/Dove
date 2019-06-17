@@ -12,6 +12,8 @@ namespace Dove.Parsing
         public Token NextToken { get; set; }
         public Lexer Lexer { get; }
 
+        public List<string> Errors { get; set; } = new List<string>();
+
         public Parser(Lexer lexer)
         {
             this.Lexer = lexer;
@@ -93,7 +95,14 @@ namespace Dove.Parsing
                 this.ReadToken();
                 return true;
             }
+
+            this.AddNextTokenError(type, this.NextToken.Type);
             return false;
+        }
+
+        private void AddNextTokenError(TokenType expected, TokenType actual)
+        {
+            this.Errors.Add($"Actual: {actual.ToString()}{System.Environment.NewLine}Expexted: {expected.ToString()}");
         }
     }
 }

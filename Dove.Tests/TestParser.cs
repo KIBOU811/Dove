@@ -2,6 +2,7 @@ using Dove.Lexing;
 using Dove.Parsing;
 using Dove.Ast.Statements;
 using Dove.Ast;
+using System;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -26,6 +27,7 @@ let xyz = 838383;";
             var lexer = new Lexer(input);
             var parser = new Parser(lexer);
             var root = parser.ParseProgram();
+            this.CheckParserErrors(parser);
 
             Assert.Equal(
                 root.Statements.Count, 3
@@ -36,11 +38,11 @@ let xyz = 838383;";
             {
                 var name = tests[i];
                 var statement = root.Statements[i];
-                this._TestLetStatement(statement, name);
+                this.TestLetStatement(statement, name);
             }
         }
 
-        private void _TestLetStatement(IStatement statement, string name)
+        private void TestLetStatement(IStatement statement, string name)
         {
             Assert.Equal(
                 statement.TokenLiteral(), "let"
@@ -49,7 +51,7 @@ let xyz = 838383;";
             var letStatement = statement as LetStatement;
             if (letStatement == null)
             {
-                _output.WriteLine("statement が LetStatement ではありません。");
+                _output.WriteLine("Statement does not match LetStatement.");
             }
 
             Assert.Equal(
@@ -59,7 +61,18 @@ let xyz = 838383;";
             Assert.Equal(
                 letStatement.Name.TokenLiteral(), name
             );
+        }
 
+        private void CheckParserErrors(Parser parser)
+        {
+            if (parser.Errors.Count == 0)
+                return;
+            
+            _output.WriteLine("");
+            foreach (var e in parser.Errors)
+            {
+                _output.WriteLine(e);
+            }
         }
     }
 }
