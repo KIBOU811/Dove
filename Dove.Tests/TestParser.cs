@@ -42,6 +42,36 @@ let xyz = 838383;";
             }
         }
 
+        [Fact]
+        public void TestReturnStatement1()
+        {
+            var input = @"return 5;
+return 10;
+return = 993322;";
+
+            var lexer = new Lexer(input);
+            var parser = new Parser(lexer);
+            var root = parser.ParseProgram();
+            this._CheckParserErrors(parser);
+
+            Assert.Equal(
+                root.Statements.Count, 3
+            );
+
+            foreach (var statement in root.Statements)
+            {
+                var returnStatement = statement as ReturnStatement;
+                if (returnStatement == null)
+                {
+                    _output.WriteLine("Statement does not match ReturnStatement.");
+                }
+
+                Assert.Equal(
+                    returnStatement.TokenLiteral(), "return"
+                );
+            }
+        }
+
         private void TestLetStatement(IStatement statement, string name)
         {
             Assert.Equal(
