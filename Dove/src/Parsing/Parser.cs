@@ -57,6 +57,8 @@ namespace Dove.Parsing
             {
                 case TokenType.LET:
                     return this.ParseLetStatement();
+                case TokenType.RETURN:
+                    return this.ParseReturnStatement();
                 default:
                     return null;
             }
@@ -80,6 +82,22 @@ namespace Dove.Parsing
             while (this.CurrentToken.Type != TokenType.SEMICOLON)
             {
                 // until semicolon is found
+                this.ReadToken();
+            }
+
+            return statement;
+        }
+        
+        public ReturnStatement ParseReturnStatement()
+        {
+            var statement = new ReturnStatement();
+            statement.Token = this.CurrentToken;
+            this.ReadToken();
+
+            // TODO: will be implemented later
+            while (this.CurrentToken.Type != TokenType.SEMICOLON)
+            {
+                // until semicoron is found
                 this.ReadToken();
             }
 
