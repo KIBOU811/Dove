@@ -52,7 +52,7 @@ return = 993322;";
             var lexer = new Lexer(input);
             var parser = new Parser(lexer);
             var root = parser.ParseProgram();
-            this._CheckParserErrors(parser);
+            this.CheckParserErrors(parser);
 
             Assert.Equal(
                 root.Statements.Count, 3
