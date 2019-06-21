@@ -14,6 +14,6 @@ namespace Dove.Ast.Expressions
             this.Value = value;
         }
 
-        public string TokenLiteral() => this.Token.Literal;
+        public string TokenLiteral() => this.Token?.Literal ?? "";
     }
 }
