@@ -8,11 +8,11 @@ using Xunit.Abstractions;
 
 namespace Dove.Tests
 {
-    public class ParserTest
+    public class TestParser
     {
         private readonly ITestOutputHelper _output;
 
-        public ParserTest(ITestOutputHelper output)
+        public TestParser(ITestOutputHelper output)
         {
             this._output = output;
         }
