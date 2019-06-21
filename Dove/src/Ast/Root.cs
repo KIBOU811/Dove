@@ -11,5 +11,17 @@ namespace Dove.Ast
         {
             return this.Statements.FirstOrDefault()?.TokenLiteral() ?? "";
         }
+
+        public string ToCode()
+        {
+            var builder = new StringBuilder();
+            
+            foreach (var ast in this.Statements)
+            {
+                builder.AppendLine(ast.ToCode());
+            }
+
+            return builder.ToString().TrimEnd();
+        }
     }
 }
