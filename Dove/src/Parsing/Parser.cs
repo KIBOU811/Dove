@@ -67,6 +67,7 @@ namespace Dove.Parsing
         public LetStatement ParseLetStatement()
         {
             var statement = new LetStatement();
+            // this.CurrentToken.Literal is "let"
             statement.Token = this.CurrentToken;
 
             if (!this.ExpectPeek(TokenType.IDENT)) return null;
@@ -74,7 +75,7 @@ namespace Dove.Parsing
             // identifier (left side of let statement)
             statement.Name = new Identifier(this.CurrentToken, this.CurrentToken.Literal);
 
-            // assign =
+            // assign '='
             if (!this.ExpectPeek(TokenType.ASSIGN)) return null;
 
             // statement (right side of let statement)
@@ -91,6 +92,7 @@ namespace Dove.Parsing
         public ReturnStatement ParseReturnStatement()
         {
             var statement = new ReturnStatement();
+            // this.CurrentToken.Literal is "return"
             statement.Token = this.CurrentToken;
             this.ReadToken();
 

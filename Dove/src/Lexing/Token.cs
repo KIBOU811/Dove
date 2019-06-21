@@ -24,6 +24,8 @@ namespace Dove.Lexing
             this.Literal = literal;
         }
 
+        // if Keywords contain inputted string, return Keyword[identifier].
+        // if Keywords don't contain inputted string, return it as IDENTIFIER.
         public static TokenType LookupIdentifier(string identifier)
         {
             if (Token.Keywords.ContainsKey(identifier))
