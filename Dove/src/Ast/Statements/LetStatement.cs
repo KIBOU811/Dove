@@ -1,6 +1,7 @@
 using Dove.Ast;
 using Dove.Ast.Expressions;
 using Dove.Lexing;
+using System.Text;
 
 namespace Dove.Ast.Statements
 {
