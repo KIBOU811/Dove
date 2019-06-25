@@ -1,7 +1,7 @@
 using Dove.Ast;
 using Dove.Lexing;
 
-namespace DOve.Ast.Statements
+namespace Dove.Ast.Statements
 {
     public class ExpressionStatement : IStatement
     {
